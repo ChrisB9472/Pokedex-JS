@@ -1,4 +1,4 @@
-let pokemonList= [
+let pokemonList = [
     {
       name: 'Charizard',
       height: 1.7,
@@ -21,3 +21,8 @@ let pokemonList= [
     },
    
   ];
+
+  for (let i = 0; i < pokemonList.length; i++) {
+    document.write(pokemonList[i].name + ': ' + pokemonList[i].height + '<br><br>');
+  }
+  
