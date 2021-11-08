@@ -1,2 +1,4 @@
-document.write(myName);
-let myName = 'Chris';
+alert('Hello world');
+
+let favoriteFood = "Chicken Alfredo"
+document.write(favoriteFood);
