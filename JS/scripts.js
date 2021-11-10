@@ -36,6 +36,21 @@ let pokemonRepository = (function () {
 pokemonRepository.add({ name: 'Pikachu', height: .7, type: ['Electric'] });
 
   
-        pokemonRepository.getAll().forEach(function(user) {
-            document.write(user.name + ' is ' + user.height + ' meters tall. Also, They are ' + user.type + ' type' + '<br><br>');
-          });
+pokemonRepository.getAll().forEach(function(pokemon) {
+  let pokemonList = document.querySelector('.pokemon-list');
+  let listPokemon = document.createElement('li');
+  let button = document.createElement('button');
+  button.innerText = pokemon.name;
+  button.classList.add('button-class')
+  listPokemon.appendChild(button);
+  pokemonList.appendChild(listPokemon);
+  button.addEventListener('click', function() { 
+    console.log(pokemon)
+    })
+      });
+
+function showDetails(pokemon) {
+  loadDetails(pokemon).then(function () {
+    console.log(pokemon);
+  });
+}
