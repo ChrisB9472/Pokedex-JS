@@ -25,16 +25,19 @@ let pokemonRepository = (function () {
       ];
    
 
+      function add(pokemon) {
+        pokemonList.push(pokemon);
+      }
+    
+      function getAll() {
+        return pokemonList;
+      }
+    
       return {
-        add: function(pokemon) {
-          pokemonList.push(pokemon);
-        },
-        getAll: function() {
-          return pokemonList;
-        }
+        add: add,
+        getAll: getAll
       };
-      
-        })();
+    })();
 
         +pokemonRepository.getAll().forEach(function(pokemon) {
           let pokemonList = document.querySelector('.pokemon-list');
