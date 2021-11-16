@@ -12,18 +12,7 @@ let pokemonRepository = (function () {
         return pokemonList;
       }
       
-      function addListItem(pokemon) {
-      let pokemonList = document.querySelector('#list-group');
-          let listPokemon = document.createElement('li');
-          let button = document.createElement('button');
-          button.innerText = pokemon.name;
-          button.classList.add('button-class')
-          listPokemon.appendChild(button);
-          pokemonList.appendChild(listPokemon);
-          button.addEventListener('click', function() { 
-            showDetails(pokemon)
-            })
-          };
+      
     
       function loadList() {
         return fetch(apiUrl).then(function (response) {
@@ -55,7 +44,7 @@ let pokemonRepository = (function () {
                 pokemonButton.setAttribute('data-toggle', 'modal');
                 pokemonButton.setAttribute('data-target', '#poke-modal');
                 pokemonButton.innerHTML = `
-                    <img src="${spriteUrl}" alt="${name}"/>
+                    <img class="sprite" src="${spriteUrl}" alt="${name}"/>
                     <p>${name}</p>
                 `;
 
@@ -154,6 +143,18 @@ let pokemonRepository = (function () {
         }
       });
 
+      let searchPokemon = document.querySelector('#search-input');
+    searchPokemon.addEventListener('input', () =>{
+        let value = searchPokemon.value.toLowerCase();
+        let pokemonList = document.querySelectorAll('li');
+
+        pokemonList.forEach((pokemon) =>{
+            if(pokemon.innerText.toLowerCase().includes(value))
+                pokemon.style.display = 'block';
+            else
+                pokemon.style.display = 'none';
+        })
+    });
       
       
         return {
