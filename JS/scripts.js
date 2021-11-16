@@ -71,6 +71,7 @@ let pokemonRepository = (function () {
           item.imageUrl = details.sprites.front_default;
           item.height = details.height;
           item.types = details.types;
+          item.weight = details.weight;
         }).catch(function (e) {
           console.error(e);
         });
@@ -113,7 +114,7 @@ let pokemonRepository = (function () {
      modalPokemonHeight.innerText = 'Height: ' + pokemon.height;
   
     let modalPokemonWeight = document.createElement('p'); 
-     modalPokemonWeight.innerText = 'Weight: ' + pokemon.weight;
+     modalPokemonWeight.innerText = 'Weight: ' + pokemon.weight + ' lbs';
   
             modal.appendChild(closeButtonElement);
             modal.appendChild(modalPokemonName);
