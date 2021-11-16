@@ -4,7 +4,7 @@
 }
 
 #modal-container.is-visible {
-  /* CSS for modal container - add your own desired CSS styles here */
+ 
   display: block;
 }
 
@@ -21,7 +21,7 @@ h1{
 ul {
     text-align: center;
     list-style-type: none;
-   
+
 }
 
 #modal-container.is-visible {
@@ -89,7 +89,8 @@ ul {
     background-color: transparent;
     list-style: none;
     margin: 20px auto;
-  
-    
+}
 
+.modal img{
+  height: 15rem;
 }
