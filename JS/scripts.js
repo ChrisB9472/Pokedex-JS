@@ -11,8 +11,9 @@ let pokemonRepository = (function () {
       function getAll() {
         return pokemonList;
       }
+      
       function addListItem(pokemon) {
-      let pokemonList = document.querySelector('.pokemon-list');
+      let pokemonList = document.querySelector('#list-group');
           let listPokemon = document.createElement('li');
           let button = document.createElement('button');
           button.innerText = pokemon.name;
@@ -40,6 +41,38 @@ let pokemonRepository = (function () {
         })
       }
 
+      function addListItem(pokemon) {
+        loadSprite(pokemon)
+            .then(() => {
+                const { name, spriteUrl } = pokemon;
+
+                let list = document.querySelector('.list-group');
+                let listItem = document.createElement('li');
+                listItem.classList.add('list-group-item');
+
+                let pokemonButton = document.createElement('button');
+                pokemonButton.classList.add('button-class');
+                pokemonButton.setAttribute('data-toggle', 'modal');
+                pokemonButton.setAttribute('data-target', '#poke-modal');
+                pokemonButton.innerHTML = `
+                    <img src="${spriteUrl}" alt="${name}"/>
+                    <p>${name}</p>
+                `;
+
+                listItem.appendChild(pokemonButton);
+                list.appendChild(listItem);
+                addEventListener(pokemonButton, pokemon);
+            });
+    }
+
+    async function loadSprite(pokemon) {
+      let res = await fetch(pokemon.detailsUrl);
+      let resData = await res.json();
+
+      pokemon.spriteUrl = resData.sprites.front_default;
+      return resData;
+  }
+
       function loadDetails(item) {
         let url = item.detailsUrl;
         return fetch(url).then(function (response) {
@@ -60,6 +93,11 @@ let pokemonRepository = (function () {
         });
     }
     
+    function addEventListener(button, pokemon) {
+      button.addEventListener('click', function (event) {
+          showDetails(pokemon);
+      });
+  }
   
     let modalContainer = document.querySelector('#modal-container');
   
@@ -115,6 +153,8 @@ let pokemonRepository = (function () {
           hideModal();
         }
       });
+
+      
       
         return {
           add: add,
